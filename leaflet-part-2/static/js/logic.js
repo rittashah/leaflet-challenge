@@ -12,11 +12,11 @@ d3.json(baseurl).then(function (data) {
 
 // Function to determine marker color by depth
 function chooseColor(depth){
-  if (depth < 10) return "#00FF00";
-  else if (depth < 30) return "greenyellow";
-  else if (depth < 50) return "yellow";
-  else if (depth < 70) return "orange";
-  else if (depth < 90) return "orangered";
+  if (depth < 10) return "#adff2f";
+  else if (depth < 30) return "#ffff00";
+  else if (depth < 50) return "#ffa500";
+  else if (depth < 70) return "#ff8c00";
+  else if (depth < 90) return "#ff4500";
   else return "#FF0000";
 }
 

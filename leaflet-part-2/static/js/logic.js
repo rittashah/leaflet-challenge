@@ -1,9 +1,9 @@
-// Store our API endpoint as queryUrl and tectonicplatesUrl
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+// Store our API endpoint as baseurl and tectonicplatesUrl
+var baseurl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 var tectonicplatesUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
 // Perform a GET request to the query URL
-d3.json(queryUrl).then(function (data) {
+d3.json(baseurl).then(function (data) {
   // Console log the data retrieved 
   console.log(data);
   // Once we get a response, send the data.features object to the createFeatures function.
@@ -20,7 +20,7 @@ function chooseColor(depth){
   else return "#FF0000";
 }
 
-function createFeatures(earthquakeData) {
+function createFeatures(earthquakeinfo) {
 
   // Define a function that we want to run once for each feature in the features array.
   // Give each feature a popup that describes the place and time of the earthquake.
@@ -28,9 +28,9 @@ function createFeatures(earthquakeData) {
     layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Date: ${new Date(feature.properties.time)}</p><p>Magnitude: ${feature.properties.mag}</p><p>Depth: ${feature.geometry.coordinates[2]}</p>`);
   }
 
-  // Create a GeoJSON layer that contains the features array on the earthquakeData object.
+  // Create a GeoJSON layer that contains the features array on the earthquakeinfo object.
   // Run the onEachFeature function once for each piece of data in the array.
-  var earthquakes = L.geoJSON(earthquakeData, {
+  var earthquakes = L.geoJSON(earthquakeinfo, {
     onEachFeature: onEachFeature,
 
     // Point to layer used to alter markers
